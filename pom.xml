@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>test.task</groupId>
-	<artifactId>crptapi</artifactId>
+	<artifactId>CrptApi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>test-task-3</name>
 	<description>The project is a test assignment for employment</description>
