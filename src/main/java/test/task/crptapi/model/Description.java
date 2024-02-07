@@ -1,8 +1,11 @@
 package test.task.crptapi.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.Objects;
 
 public class Description {
+    @Schema(example = "string", description = "ИНН поставщика")
     private String participantInn;
 
     public Description() {

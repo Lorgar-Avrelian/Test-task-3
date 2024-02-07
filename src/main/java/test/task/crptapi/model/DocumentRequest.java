@@ -1,22 +1,37 @@
 package test.task.crptapi.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class DocumentRequest {
+    @Schema(description = "Описание документа")
     private Description description;
+    @Schema(example = "string", description = "ID документа")
     private String doc_id;
+    @Schema(example = "string", description = "Статус документа")
     private String doc_status;
+    @Schema(example = "LP_INTRODUCE_GOODS", description = "Тип документа")
     private DocType doc_type;
+    @Schema(example = "true", description = "Импорт запроса")
     private boolean importRequest;
+    @Schema(example = "string", description = "ИНН владельца")
     private String owner_inn;
+    @Schema(example = "string", description = "ИНН поставщика")
     private String participant_inn;
+    @Schema(example = "string", description = "ИНН производителя")
     private String producer_inn;
+    @Schema(example = "2020-01-23", description = "Дата производства")
     private Date production_date;
+    @Schema(example = "string", description = "Тип продукции")
     private String production_type;
+    @Schema(description = "Список продуктов")
     private List<Product> products;
+    @Schema(example = "2020-01-23", description = "Дата регистрации")
     private Date reg_date;
+    @Schema(example = "string", description = "Регистрационный номер")
     private String reg_number;
 
     public DocumentRequest() {

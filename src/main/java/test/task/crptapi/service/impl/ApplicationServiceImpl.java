@@ -1,11 +1,13 @@
 package test.task.crptapi.service.impl;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import test.task.crptapi.model.DocumentRequest;
 import test.task.crptapi.model.Product;
+import test.task.crptapi.request_filter.CrptApi;
 import test.task.crptapi.service.ApplicationService;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,15 +20,32 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.net.http.HttpRequest;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
-    public boolean create(DocumentRequest documentRequest, HttpRequest httpRequest) {
-        return createXMLFile(documentRequest);
+    @Value("${files.dir.path}")
+    private String filesDir;
+    @Value("${time.control.period}")
+    private Long timeInMilliseconds;
+    @Value("${request.limit.control}")
+    private int requestLimit;
+
+    public boolean create(DocumentRequest documentRequest, String signature) {
+        if (signature == null) {
+            return false;
+        }
+        CrptApi crptApi = CrptApi.getInstance(timeInMilliseconds, requestLimit);
+        if (!crptApi.control(signature)) {
+            return false;
+        }
+        return createXMLFile(documentRequest, signature);
     }
-    public boolean createXMLFile(DocumentRequest documentRequest) {
+
+    public boolean createXMLFile(DocumentRequest documentRequest, String signature) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         try {
@@ -132,8 +151,10 @@ public class ApplicationServiceImpl implements ApplicationService {
         try {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.transform(new DOMSource(document), new StreamResult(new File("example.xml")));
-        } catch (TransformerException e) {
+            Path filePath = Path.of(filesDir, signature);
+            Files.createDirectories(filePath.getParent());
+            transformer.transform(new DOMSource(document), new StreamResult(new File(filesDir, signature + ".xml")));
+        } catch (TransformerException | IOException e) {
             return false;
         }
         return true;

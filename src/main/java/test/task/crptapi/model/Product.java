@@ -1,17 +1,28 @@
 package test.task.crptapi.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.sql.Date;
 import java.util.Objects;
 
 public class Product {
+    @Schema(example = "string", description = "Документ сертификации")
     private String certificate_document;
+    @Schema(example = "2020-01-23", description = "Дата выдачи сертификата")
     private Date certificate_document_date;
+    @Schema(example = "string", description = "Номер документа сертификации")
     private String certificate_document_number;
+    @Schema(example = "string", description = "ИНН владельца")
     private String owner_inn;
+    @Schema(example = "string", description = "ИНН производителя")
     private String producer_inn;
+    @Schema(example = "2020-01-23", description = "Дата производства")
     private Date production_date;
+    @Schema(example = "string", description = "Код ТН ВЭД")
     private String tnved_code;
+    @Schema(example = "string", description = "Код УИТ")
     private String uit_code;
+    @Schema(example = "string", description = "Код УИТУ")
     private String uitu_code;
 
     public Product() {

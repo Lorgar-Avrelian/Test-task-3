@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document_text>
+    <description>
+        <participantInn>string</participantInn>
+    </description>
+    <doc_id>string2020-01-23</doc_id>
+    <doc_status>string</doc_status>
+    <doc_type>LP_INTRODUCE_GOODS</doc_type>
+    <importRequest>true</importRequest>
+    <owner_inn>string</owner_inn>
+    <participant_inn>string</participant_inn>
+    <producer_inn>string</producer_inn>
+    <production_date/>
+    <production_type>string</production_type>
+    <products>
+        <certificate_document>string</certificate_document>
+        <certificate_document_date>2020-01-23</certificate_document_date>
+        <certificate_document_number>string</certificate_document_number>
+        <owner_inn>string</owner_inn>
+        <producer_inn>string</producer_inn>
+        <production_date>2020-01-23</production_date>
+        <tnved_code>string</tnved_code>
+        <uit_code>string</uit_code>
+        <uitu_code>string</uitu_code>
+    </products>
+    <reg_date>2020-01-23</reg_date>
+    <reg_number>string</reg_number>
+</document_text>
